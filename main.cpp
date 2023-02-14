@@ -6,7 +6,6 @@
 #include <string>
 #include <iomanip>
 
-
 void display_words(const std::map<std::string, int> &words) {
     std::cout << std::setw(12) << std::left << "\nWord"
               << std::setw(7) << std::right << "Count"<< std::endl;
@@ -45,10 +44,14 @@ void part1() {
     std::map<std::string, int> words;
     std::string line;
     std::string word;
-    std::ifstream in_file {"words.txt"};
+    std::ifstream in_file {"../words.txt"};
     if (in_file) {
-        while(in_file>>word) {
-            words[word]++;
+        while (std::getline(in_file, line)) {
+            std::stringstream ss(line);
+            while (ss >> word) {
+                word = clean_string(word);
+                words[word]++;
+            }
         }
         in_file.close();
         display_words(words);
@@ -61,14 +64,16 @@ void part2() {
     std::map<std::string, std::set<int>> words;
     std::string line;
     std::string word;
-    std::ifstream in_file {"words.txt"};
+    std::ifstream in_file {"../words.txt"};
     if (in_file) {
-        int line_count = 0;
-        while(getline(in_file,line)){
-            std::istringstream line_line{line};
-            line_count++;
-            while(line_line>>word) {
-                words[word].insert(line_count);
+        int line_number = 0;
+        while (std::getline(in_file, line)) {
+            //std::cout << line;
+            line_number++;
+            std::stringstream ss(line);
+            while (ss >> word) {
+                word = clean_string(word);
+                words[word].insert(line_number);
             }
         }
         in_file.close();
