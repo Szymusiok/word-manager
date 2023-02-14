@@ -1,0 +1,3 @@
+D:/cpp/nauka/cmake-build-debug/CMakeFiles/nauka.dir
+D:/cpp/nauka/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/cpp/nauka/cmake-build-debug/CMakeFiles/rebuild_cache.dir
